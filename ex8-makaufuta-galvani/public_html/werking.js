@@ -93,8 +93,10 @@ request(dronesSettings, function(error, response, dronesString){
                                 file.contents_count,
                                 file.drone_id,
                                 file.ref,
-                                file.url
+                                file.url,
+                                drone.id
                                 ));
+                        
                         
                         
                         
