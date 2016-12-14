@@ -106,7 +106,19 @@ request(dronesSettings, function(error, response, dronesString){
                                 var contentSettings = new Settings("/files/" + file.id + "/contents/" + content.id + "?format=json");
                                 request(contentSettings, function (error, response, contentString){
                                     var contents = JSON.parse(contentString);
-                                    
+                                    //geheugen content
+                                    dal.insertContent(new Content(
+                                            content.id,
+                                            content.url,
+                                            content.reg,
+                                            content.rssi,
+                                            content.drone_id,
+                                            content.file_id,
+                                            content.datum_tijd,
+                                            content.mac,
+                                            drone.id,
+                                            file.id
+                                            ));
                                     
                                 })
                             })
