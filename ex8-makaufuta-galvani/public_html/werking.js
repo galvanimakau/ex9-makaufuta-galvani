@@ -122,18 +122,18 @@ request(dronesSettings, function(error, response, dronesString){
                                             file.id
                                             ));
                                     
-                                })
-                            })
-                        })
+                                });
+                            });
+                        });
                         
                         
                         
-                    })
-                })
-            })
+                    });
+                });
+            });
             
             
             
-        })
-    })
-})
+        });
+    });
+});
