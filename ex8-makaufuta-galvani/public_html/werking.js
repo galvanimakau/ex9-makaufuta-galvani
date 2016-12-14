@@ -100,12 +100,13 @@ request(dronesSettings, function(error, response, dronesString){
                         var contentsSettings = new Settings("/files/" + file.id + "/contents?format=json");
                         request(contentsSettings, function(error, response, contentsString){
                             //JSON
-                            var content = JSON.parse(contentsString);
+                            var contents = JSON.parse(contentsString);
                             //foreach
                             contents.forEach(function(content){
                                 var contentSettings = new Settings("/files/" + file.id + "/contents/" + content.id + "?format=json");
                                 request(contentSettings, function (error, response, contentString){
                                     var contents = JSON.parse(contentString);
+                                    
                                     
                                 })
                             })
