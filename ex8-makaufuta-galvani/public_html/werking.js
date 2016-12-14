@@ -15,13 +15,14 @@ var BASE_URL = "https://web-ims.thomasmore.be/datadistribution/API/2.0";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 //variabelen indentifieren met hun onderdelen
-var Drone = function (id, mac, datum, locatie, files, files_count){
+var Drone = function (id, mac, datum, locatie, files, files_count, name){
     this._id = id;
     this.mac = mac;
     this.datum = datum;
     this.locatie=locatie;
     this.files=files;
     this.files_count=files_count;
+    this.name=name;
 };
 var File = function (id, datum_eerste_record, datum_laatste_record, datum_geladen, contents, contents_count, drone_id, ref, url){
     this._id =id;
@@ -37,7 +38,7 @@ var File = function (id, datum_eerste_record, datum_laatste_record, datum_gelade
 var Content = function (id, url, ref, rssi, drone_id, file_id, datum_tijd, mac){
     this._id =id;
     this.url=url;
-    this.reg = ref;
+    this.ref = ref;
     this.rssi = rssi;
     this.drone_id = drone_id;
     this.file_id = file_id;
@@ -71,7 +72,8 @@ request(dronesSettings, function(error, response, dronesString){
                     drone.datum,
                     drone.locatie,
                     drone.files,
-                    drone.files_count
+                    drone.files_count,
+                    drone.name
             ));
             //file
             var filesSettings = new Settings("/files?drone_id.is=" + drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00");
@@ -105,12 +107,12 @@ request(dronesSettings, function(error, response, dronesString){
                             contents.forEach(function(content){
                                 var contentSettings = new Settings("/files/" + file.id + "/contents/" + content.id + "?format=json");
                                 request(contentSettings, function (error, response, contentString){
-                                    var contents = JSON.parse(contentString);
+                                    var content = JSON.parse(contentString);
                                     //geheugen content
                                     dal.insertContent(new Content(
                                             content.id,
                                             content.url,
-                                            content.reg,
+                                            content.ref,
                                             content.rssi,
                                             content.drone_id,
                                             content.file_id,
