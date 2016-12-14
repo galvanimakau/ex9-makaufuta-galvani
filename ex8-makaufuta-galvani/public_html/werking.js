@@ -57,10 +57,24 @@ dal.clearContent();
 request(dronesSettings, function(error, response, dronesString){
     var drones = JSON.parse(dronesString);
     //ForEach gebruiken om het weer te geven
+    
     drones.forEach(function(drone){
+        //drone
         var droneSettings =new Settings("/drones/" + drone.id + "?format=json");
         request(droneSettings, function(error, response, droneString){
+            
             var drone = JSON.parse (droneString);
+            //drone op geheugen zetten
+            dal.insertDrone(new Drone(
+                    drone._id,
+                    drone.mac,
+                    drone.datum,
+                    drone.locatie,
+                    drone.files,
+                    drone.files_count
+            ));
+           
+            
             
             
         })
