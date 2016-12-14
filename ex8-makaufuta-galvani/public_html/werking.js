@@ -11,6 +11,9 @@ var dal = require('./storage.js');
 // verenvoudigen van url
 var BASE_URL = "https://web-ims.thomasmore.be/datadistribution/API/2.0";
 
+//certificaat voor het site: http://stackoverflow.com/questions/10888610/ignore-invalid-self-signed-ssl-certificate-in-node-js-with-https-request 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 //variabelen indentifieren met hun onderdelen
 var Drone = function (id, mac, datum, locatie, files, files_count){
     this._id = id;
