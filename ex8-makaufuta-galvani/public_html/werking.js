@@ -21,16 +21,15 @@ var Drone = function (id, mac, datum, locatie, files, files_count){
     this.files_count=files_count;
 };
 var File = (id, datum_eerste_record, datum_laatste_record, datum_geladen, contents, contents_count, drone_id, ref, url){
-    this._id = id;
+    this._id =id;
     this.datum_eerste_record = datum_eerste_record;
     this.datum_laatste_record = datum_laatste_record;    
-    this.datu_geladen = datum_geladen;
+    this.datum_geladen = datum_geladen;
     this.content= content;
     this.content_count = content_count;
     this.drone_id =drone_id;
-    this.ref=ref
+    this.ref=ref;
     this.url=url;
-    
 };
 var Content = function (id, url, ref, rssi, drone_id, file_id, datum_tijd, mac){
     this._id =id;
