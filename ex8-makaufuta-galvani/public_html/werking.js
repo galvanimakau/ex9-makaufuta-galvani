@@ -66,7 +66,7 @@ request(dronesSettings, function(error, response, dronesString){
             var drone = JSON.parse (droneString);
             //drone op geheugen zetten
             dal.insertDrone(new Drone(
-                    drone._id,
+                    drone.id,
                     drone.mac,
                     drone.datum,
                     drone.locatie,
@@ -77,11 +77,24 @@ request(dronesSettings, function(error, response, dronesString){
             var filesSettings = new Settings("/files?drone_id.is=" + drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00");
             console.log(filesSettings);
             request(filesSettings, function(error, response, filesString){
+                
                 var files = JSON.parse(filesString);
                 files.forEach(function (file){
                     var fileSettings = new Settings("/files/" + file.id + "?format=json");
                     request(fileSettings, function(error, response, fileString){
                         var file = JSON.parse(fileString);
+                        //file op geheugen zetten
+                        dal.insertFile(new File(
+                                file.id,
+                                file.datum_eerste_record,
+                                file.datum_laatste_record,    
+                                file.datum_geladen,
+                                file.contents,
+                                file.contents_count,
+                                file.drone_id,
+                                file.ref,
+                                file.url
+                                ));
                         
                         
                         
