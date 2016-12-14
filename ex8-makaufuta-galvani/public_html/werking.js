@@ -96,7 +96,15 @@ request(dronesSettings, function(error, response, dronesString){
                                 file.url,
                                 drone.id
                                 ));
-                        
+                        //content
+                        var contentsSettings = new Settings("/files/" + file.id + "/contents?format=json");
+                        request(contentsSettings, function(error, response, contentsString){
+                            //JSON
+                            var content = JSON.parse(contentsString);
+                            
+                                })
+                            })
+                        })
                         
                         
                         
