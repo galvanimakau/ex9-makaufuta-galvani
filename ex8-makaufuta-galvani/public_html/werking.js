@@ -73,7 +73,21 @@ request(dronesSettings, function(error, response, dronesString){
                     drone.files,
                     drone.files_count
             ));
-           
+            //file
+            var filesSettings = new Settings("/files?drone_id.is=" + drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00");
+            console.log(filesSettings);
+            request(filesSettings, function(error, response, filesString){
+                var files = JSON.parse(filesString);
+                files.forEach(function (file){
+                    var fileSettings = new Settings("/files/" + file.id + "?format=json");
+                    request(fileSettings, function(error, response, fileString){
+                        var file = JSON.parse(fileString);
+                        
+                        
+                        
+                    })
+                })
+            })
             
             
             
