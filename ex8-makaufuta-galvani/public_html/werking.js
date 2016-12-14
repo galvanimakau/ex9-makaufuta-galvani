@@ -52,3 +52,8 @@ var dronesSettings = new Settings("/drones?format=json");
 dal.clearDrone();
 dal.clearFile();
 dal.clearContent();
+
+//drone weergeven als JSON
+request(dronesSettings, function(error, response, dronesString){
+    var drones = JSON.parse(dronesString);
+})
