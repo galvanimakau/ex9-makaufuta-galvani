@@ -44,3 +44,6 @@ var Content = function (id, url, ref, rssi, drone_id, file_id, datum_tijd, mac){
     this.datum_tijd = datum_tijd;
     this.mac = mac;
 };
+
+//link meegeven
+var dronesSettings = new Settings("/drones?format=json");
