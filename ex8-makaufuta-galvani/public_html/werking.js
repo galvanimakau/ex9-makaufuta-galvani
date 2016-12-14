@@ -45,5 +45,10 @@ var Content = function (id, url, ref, rssi, drone_id, file_id, datum_tijd, mac){
     this.mac = mac;
 };
 
-//link meegeven
+//link meegeven waar data staat
 var dronesSettings = new Settings("/drones?format=json");
+
+//tabel leeg maken
+dal.clearDrone();
+dal.clearFile();
+dal.clearContent();
