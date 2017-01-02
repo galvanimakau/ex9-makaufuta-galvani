@@ -54,3 +54,10 @@ app.post("/locations", function(request, reponse){
     var location =request.body;
     //Bestaan van velden validate
     var errors = validationLocations.fieldsNotEmpty(location,"name_drone", "name_location", "mac_address_drone", "beschrijving");
+    //functie om error te push
+    if (errors){
+        response.status(400).send({
+            msg: "De Volgende velden zijn fout of verplicht: " + errors.concat()       
+        });
+        return;
+    }
