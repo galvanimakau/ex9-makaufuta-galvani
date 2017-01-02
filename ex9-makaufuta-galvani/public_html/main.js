@@ -22,3 +22,6 @@ var validationBewegingen = require('./validatebewegingen.js');
 
 //webserver variabele aanmaken
 var app = express();
+
+//json formaat
+app.use(parser.json());
