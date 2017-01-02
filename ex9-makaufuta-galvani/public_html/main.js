@@ -26,6 +26,8 @@ var app = express();
 //json formaat
 app.use(parser.json());
 
+// --> LOCATION <--
+
 //opvangen van GET op /locations
 app.get('/locations', function(request, response){
     dalLocation.AllLocations(function(err, location){
@@ -90,3 +92,50 @@ app.put("locations/:id", function (request, response){
         response.send(location);
     });
 });
+
+// --> AANWEZIGHEDEN <--
+
+//opvangen van GET op /aanwezigheden
+app.get('/aanwezigheden', function(request, response){
+    dalAanwezig.AllAanwezigheden(function(err, aanwezig){
+        if(err){
+            throw err;
+        }
+        response.send(aanwezig);
+    });
+});
+
+//opvangen van GET op /aanwezigheden/:id
+app.get('/aanwezigheden/:id', function(request, response){
+    dalAanwezig.findAanwezigheden(request.params.id, function(err, aanwezig){
+        if(aanwezig){
+        response.send(aanwezig);
+        }else{
+            err;
+        }
+    });
+});
+
+//opvangen van POST op /aanwezigheden
+app.post("/aanwezigheden", function(request, response){
+    //data toegekend aan aanwezig variabele
+    //enkel opgevuld als het JSON formaat is.
+    var mensen =request.body;
+    //Bestaan van velden validate
+    var errors = validationAanwezigheden.fieldsNotEmpty(mensen,"name_drone", "name_location", "aantal", "uur", "ID");
+    //functie om error te push
+    if (errors){
+        response.status(400).send({
+            msg: "De Volgende velden zijn fout of verplicht: " + errors.concat()       
+        });
+        return;
+    }
+    //bestaan van velden in de bewaarplaats
+    dalAanwezig.saveAanwezigheden(mensen, function(err, mensen){
+        if(err){
+            throw err;
+        }
+        response.send(mensen);
+    });
+});
+
