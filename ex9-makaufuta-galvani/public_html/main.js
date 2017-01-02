@@ -25,3 +25,13 @@ var app = express();
 
 //json formaat
 app.use(parser.json());
+
+//opvangen van GET op /locations
+app.get('/locations', function(request, response){
+    dalLocation.AllLocations(function(err, location){
+        if(err){
+            throw err;
+        }
+        response.send(location);
+    });
+});
