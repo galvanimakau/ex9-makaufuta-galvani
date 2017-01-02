@@ -61,3 +61,11 @@ app.post("/locations", function(request, reponse){
         });
         return;
     }
+    //bestaan van velden in de bewaarplaats
+    dalLocation.saveLocations(location, function(err, location){
+        if(err){
+            throw err;
+        }
+        repsonse.send(location);
+    });
+});
