@@ -48,7 +48,7 @@ app.get('/locations/:id', function(request, response){
 });
 
 //opvangen van POST op /locations
-app.post("/locations", function(requst, reponse){
+app.post("/locations", function(request, reponse){
     //data toegekend aan locatie variabele
     //enkel opgevuld als het JSON formaat is.
     var location =request.body;
