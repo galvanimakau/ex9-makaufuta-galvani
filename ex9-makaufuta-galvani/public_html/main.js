@@ -15,3 +15,7 @@ var validationLocations = require('./validatelocations.js');
 //AANWEZIGHEDEN
 var dalAanwezig = require('./storageaanwezigheden.js');
 var validationAanwezigheden = require('./validateaanwezigheden.js');
+
+//BEWEGINGEN
+var dalBeweging = require('./storagebewegingen.js');
+var validationBewegingen = require('./validatebewegingen.js');
