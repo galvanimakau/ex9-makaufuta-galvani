@@ -46,3 +46,11 @@ app.get('/locations/:id', function(request, response){
         }
     });
 });
+
+//opvangen van POST op /locations
+app.post("/locations", function(requst, reponse){
+    //data toegekend aan locatie variabele
+    //enkel opgevuld als het JSON formaat is.
+    var location =request.body;
+    //Bestaan van velden validate
+    var errors = validationLocations.fieldsNotEmpty(location,"name_drone", "name_location", "mac_address_drone", "beschrijving");
