@@ -186,3 +186,6 @@ app.post("/bewegingen", function(request, response){
 });
 //starten van server op poort 4567
 app.listen(4567);
+
+//Controle
+console.log("Server started");
