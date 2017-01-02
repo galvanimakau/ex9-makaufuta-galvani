@@ -9,5 +9,9 @@ mongoose.connect('mongodb://localhost:27017/MyAPI');//DATABANK IN ROBOMONGO
 //datastore
 //bewaren van state
 //LOCATION
-var dalLocation = require('./storagelocation.js');
-var validationLocation = require('./validatelocation.js');
+var dalLocation = require('./storagelocations.js');
+var validationLocations = require('./validatelocations.js');
+
+//AANWEZIGHEDEN
+var dalAanwezig = require('./storageaanwezigheden.js');
+var validationAanwezigheden = require('./validateaanwezigheden.js');
