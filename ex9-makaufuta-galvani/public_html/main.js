@@ -69,3 +69,24 @@ app.post("/locations", function(request, response){
         response.send(location);
     });
 });
+
+//locations/:id
+app.put("locations/:id", function (request, response){
+    var location = request.body;
+    //bestaan van velden validate
+    var errors = validationLocations.fieldsNotEmpty(location,"name_drone", "name_location", "mac_address_drone", "beschrijving");
+    //functie om error te push
+    if (errors){
+        response.status(400).send({
+            msg: "De Volgende velden zijn fout of verplicht: " + errors.concat()       
+        });
+        return;
+    }
+     //updaten velden in de bewaarplaats
+    dalLocation.updateLocations(request.params.id,location, function(err, location){
+        if(err){
+            throw err;
+        }
+        response.send(location);
+    });
+});
