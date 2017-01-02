@@ -35,3 +35,14 @@ app.get('/locations', function(request, response){
         response.send(location);
     });
 });
+
+//opvangen van GET op /locations/:name_drone
+app.get('/locations/:id', function(request, response){
+    dalLocation.findLocations(request.params.id, function(err, location){
+        if(location){
+        response.send(location);
+        }else{
+            err;
+        }
+    });
+});
