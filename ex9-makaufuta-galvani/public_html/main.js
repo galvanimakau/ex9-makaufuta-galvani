@@ -139,3 +139,48 @@ app.post("/aanwezigheden", function(request, response){
     });
 });
 
+//--> BEWEGINGEN <--
+
+//opvangen van GET op /bewegingen
+app.get('/bewegingen', function(request, response){
+    dalBeweging.AllBewegingen(function(err, beweging){
+        if(err){
+            throw err;
+        }
+        response.send(beweging);
+    });
+});
+
+//opvangen van GET op /aanwezigheden/:id
+app.get('/bewegingen/:id', function(request, response){
+    dalBeweging.findBewegingen(request.params.id, function(err, beweging){
+        if(beweging){
+        response.send(beweging);
+        }else{
+            err;
+        }
+    });
+});
+
+//opvangen van POST op /bewegingen
+app.post("/bewegingen", function(request, response){
+    //data toegekend aan beweging variabele
+    //enkel opgevuld als het JSON formaat is.
+    var beweging =request.body;
+    //Bestaan van velden validate
+    var errors = validationBewegingen.fieldsNotEmpty(beweging,"beweging", "begin_location", "end_location", "duur", "beweging_id", "weer");
+    //functie om error te push
+    if (errors){
+        response.status(400).send({
+            msg: "De Volgende velden zijn fout of verplicht: " + errors.concat()       
+        });
+        return;
+    }
+    //bestaan van velden in de bewaarplaats
+    dalbeweging.saveBewegingen(beweging, function(err, beweging){
+        if(err){
+            throw err;
+        }
+        response.send(beweging);
+    });
+});
