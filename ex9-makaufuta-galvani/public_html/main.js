@@ -177,7 +177,7 @@ app.post("/bewegingen", function(request, response){
         return;
     }
     //bestaan van velden in de bewaarplaats
-    dalbeweging.saveBewegingen(beweging, function(err, beweging){
+    dalBeweging.saveBewegingen(beweging, function(err, beweging){
         if(err){
             throw err;
         }
