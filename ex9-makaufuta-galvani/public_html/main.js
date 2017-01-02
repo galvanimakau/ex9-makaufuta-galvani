@@ -6,4 +6,8 @@ var mongoose = require('mongoose');//GELIJKACHTIG AAN MONGOCLIENT --> JONAS
 //connectie naar mongoose
 mongoose.connect('mongodb://localhost:27017/MyAPI');//DATABANK IN ROBOMONGO
 
-
+//datastore
+//bewaren van state
+//LOCATION
+var dalLocation = require('./storagelocation.js');
+var validationLocation = require('./validatelocation.js');
