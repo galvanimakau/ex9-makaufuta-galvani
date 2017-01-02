@@ -19,3 +19,6 @@ var validationAanwezigheden = require('./validateaanwezigheden.js');
 //BEWEGINGEN
 var dalBeweging = require('./storagebewegingen.js');
 var validationBewegingen = require('./validatebewegingen.js');
+
+//webserver variabele aanmaken
+var app = express();
