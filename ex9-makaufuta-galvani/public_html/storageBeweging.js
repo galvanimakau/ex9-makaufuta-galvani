@@ -34,3 +34,7 @@ var aanwezigSchema = mongoose.Schema({
         type: String
     }
 });
+
+//gegevens bijhouden
+var Beweging = module.exports = mongoose.model('Beweging', bewegingSchema);
+
