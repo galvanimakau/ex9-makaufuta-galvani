@@ -38,3 +38,15 @@ var aanwezigSchema = mongoose.Schema({
 //gegevens bijhouden
 var Beweging = module.exports = mongoose.model('Beweging', bewegingSchema);
 
+//gegeven exporteren naar mongoose
+module.exports = {
+    saveBewegingen: function (beweging, callback){
+        Beweging.create(beweging, callback);
+    },
+    AllBewegingen: function(callback){
+        Beweging.find(callback);
+    },
+    findBewegingen: function(id, callback){
+        beweging.find({bewegingid:id}, callback);
+    }
+        };
