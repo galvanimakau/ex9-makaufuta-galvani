@@ -33,17 +33,17 @@ var aanwezigSchema = mongoose.Schema({
 });
 
 //gegevens bijhouden
-var Beweging = module.exports = mongoose.model('Beweging', bewegingSchema);
+var Aanwezig = module.exports = mongoose.model('Aanwezig', aanwezigSchema);
 
 //gegeven exporteren naar mongoose
 module.exports = {
-    saveBewegingen: function (beweging, callback){
-        Beweging.create(beweging, callback);
+    saveAanwezigheden: function (aanwezig, callback){
+        Aanwezig.create(aanwezig, callback);
     },
-    AllBewegingen: function(callback){
-        Beweging.find(callback);
+    AllAanwezigheden: function(callback){
+        Aanwezig.find(callback);
     },
-    findBewegingen: function(id, callback){
-        Beweging.find({bewegingid:id}, callback);
+    findAanwezigheden: function(id, callback){
+        Aanwezig.find({ID:id}, callback);
     }
         };
