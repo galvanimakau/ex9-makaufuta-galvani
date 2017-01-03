@@ -29,3 +29,22 @@ var locationSchema = mongoose.Schema({
         required: true
     }
 });
+
+//gegevens bijhouden
+var Location = module.exports = mongoose.model('Location', locationSchema);
+
+//gegeven exporteren naar mongoose
+module.exports = {
+    saveLocations: function (Location, callback){
+        Location.create(Location, callback);
+    },
+    AllLocations: function(callback){
+        Location.find(callback);
+    },
+    findLocations: function(id, callback){
+        Location.find({name_drone:id}, callback);
+    },
+    updateLocations: function(id,location, callback){
+        Location.findOneAndUpdate({name_drone:id}, location, callback);
+    }
+        };
