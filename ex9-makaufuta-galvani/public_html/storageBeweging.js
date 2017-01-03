@@ -8,7 +8,7 @@
 var mongoose = require("mongoose");
 
 //schema aanmaken in mongoose
-var aanwezigSchema = mongoose.Schema({
+var bewegingSchema = mongoose.Schema({
     beweging:{
         type: Boolean,
         required: true
