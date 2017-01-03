@@ -47,6 +47,6 @@ module.exports = {
         Beweging.find(callback);
     },
     findBewegingen: function(id, callback){
-        beweging.find({bewegingid:id}, callback);
+        Beweging.find({bewegingid:id}, callback);
     }
         };
